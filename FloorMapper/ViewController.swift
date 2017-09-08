@@ -7,73 +7,149 @@
 //
 
 import UIKit
-import SpriteKit
 import ARKit
 
-class ViewController: UIViewController, ARSKViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate {
     
-    @IBOutlet var sceneView: ARSKView!
+    // MARK: - UI Elements
+    
+    @IBOutlet var sceneView: ARSCNView!
+    
+    // MARK: - ARKit Config Properties
+    
+    var screenCenter: CGPoint?
+    var trackingFallbackTimer: Timer?
+
+    let session = ARSession()
+    let fallbackConfiguration = AROrientationTrackingConfiguration()
+
+    let standardConfiguration: ARWorldTrackingConfiguration = {
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        return configuration
+    }()
+    
+    // MARK: - Queues
+    
+    static let serialSceneKitQueue = DispatchQueue(label: "de.florianschoeler.serialSceneKitQueue")
+    // Create instance variable for more readable access inside class
+    let serialSceneKitQueue: DispatchQueue = ViewController.serialSceneKitQueue
+    
+    // MARK: - View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set the view's delegate
-        sceneView.delegate = self
-        
-        // Show statistics such as fps and node count
-        sceneView.showsFPS = true
-        sceneView.showsNodeCount = true
-        
-        // Load the SKScene from 'Scene.sks'
-        if let scene = SKScene(fileNamed: "Scene") {
-            sceneView.presentScene(scene)
-        }
+        setupScene()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // Prevent the screen from being dimmed after a while.
+        UIApplication.shared.isIdleTimerDisabled = true
 
-        // Run the view's session
-        sceneView.session.run(configuration)
+        if ARWorldTrackingConfiguration.isSupported {
+            // Start the ARSession.
+            resetTracking()
+        } else {
+            // This device does not support 6DOF world tracking.
+            let sessionErrorMsg = "This app requires world tracking. World tracking is only available on iOS devices with A9 processor or newer. " +
+            "Please quit the application."
+            displayMessage(title: "Unsupported platform", message: sessionErrorMsg)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Pause the view's session
-        sceneView.session.pause()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
     }
     
-    // MARK: - ARSKViewDelegate
+    // MARK: - Setup
     
-    func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
-        // Create and configure a node for the anchor added to the view's session.
-        let labelNode = SKLabelNode(text: "👾")
-        labelNode.horizontalAlignmentMode = .center
-        labelNode.verticalAlignmentMode = .center
-        return labelNode;
-    }
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
+    func setupScene() {
+        sceneView.setup()
+        sceneView.delegate = self
+        sceneView.session = session
+        sceneView.scene.enableEnvironmentMapWithIntensity(25, queue: serialSceneKitQueue)
         
+//        sceneView.debugOptions = [.showWireframe]
+
+        DispatchQueue.main.async {
+            self.screenCenter = self.sceneView.bounds.mid
+        }
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+    // Mark: - Tracking
+    
+    func resetTracking() {
+        session.run(standardConfiguration, options: [.resetTracking, .removeExistingAnchors])
+
+        // reset timer
+        if trackingFallbackTimer != nil {
+            trackingFallbackTimer!.invalidate()
+            trackingFallbackTimer = nil
+        }
     }
     
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
+    // MARK: - Error handling
+    
+    func displayMessage(title: String, message: String) {
+        let dialog = UIAlertController(title: title, message: message, preferredStyle:.alert)
+        let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        dialog.addAction(okayAction)
+        present(dialog, animated: false, completion: nil)
+    }
+    
+    // MARK: - ARSCNViewDelegate
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        if let planeAnchor = anchor as? ARPlaneAnchor {
+            serialSceneKitQueue.async {
+                self.addPlane(node: node, anchor: planeAnchor)
+            }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        if let planeAnchor = anchor as? ARPlaneAnchor {
+            serialSceneKitQueue.async {
+                self.updatePlane(anchor: planeAnchor)
+            }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+        if let planeAnchor = anchor as? ARPlaneAnchor {
+            serialSceneKitQueue.async {
+                self.removePlane(anchor: planeAnchor)
+            }
+        }
+    }
+    
+    // MARK: - Planes
+    
+    var planes = [ARPlaneAnchor: Plane]()
+    
+    func addPlane(node: SCNNode,  anchor: ARPlaneAnchor) {
+        let plane = Plane(anchor)
+        planes[anchor] = plane        
+        node.addChildNode(plane)
+    }
+    
+    func updatePlane(anchor: ARPlaneAnchor) {
+        if let plane = planes[anchor] {
+            plane.update(anchor)
+        }
+    }
+    
+    func removePlane(anchor: ARPlaneAnchor) {
+        if let plane = planes.removeValue(forKey: anchor) {
+            plane.removeFromParentNode()
+        }
     }
 }

@@ -8,14 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		D7F06EDC1F592E8A00B8C6AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06EDB1F592E8A00B8C6AA /* AppDelegate.swift */; };
-		D7F06EDE1F592E8A00B8C6AA /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D7F06EDD1F592E8A00B8C6AA /* Scene.sks */; };
-		D7F06EE01F592E8A00B8C6AA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06EDF1F592E8A00B8C6AA /* Scene.swift */; };
 		D7F06EE21F592E8A00B8C6AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06EE11F592E8A00B8C6AA /* ViewController.swift */; };
 		D7F06EE51F592E8A00B8C6AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7F06EE31F592E8A00B8C6AA /* Main.storyboard */; };
 		D7F06EE71F592E8A00B8C6AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F06EE61F592E8A00B8C6AA /* Assets.xcassets */; };
 		D7F06EEA1F592E8A00B8C6AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7F06EE81F592E8A00B8C6AA /* LaunchScreen.storyboard */; };
 		D7F06EF51F592E8B00B8C6AA /* FloorMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06EF41F592E8B00B8C6AA /* FloorMapperTests.swift */; };
 		D7F06F001F592E8B00B8C6AA /* FloorMapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06EFF1F592E8B00B8C6AA /* FloorMapperUITests.swift */; };
+		D7F06F0E1F59356200B8C6AA /* ARSCNView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F0D1F59356200B8C6AA /* ARSCNView+Convenience.swift */; };
+		D7F06F101F5935DB00B8C6AA /* SCNScene+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F0F1F5935DB00B8C6AA /* SCNScene+Convenience.swift */; };
+		D7F06F121F59362800B8C6AA /* CGRect+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F111F59362800B8C6AA /* CGRect+Convenience.swift */; };
+		D7F06F141F59469F00B8C6AA /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F131F59469F00B8C6AA /* Plane.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +40,6 @@
 /* Begin PBXFileReference section */
 		D7F06ED81F592E8A00B8C6AA /* FloorMapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloorMapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F06EDB1F592E8A00B8C6AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D7F06EDD1F592E8A00B8C6AA /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
-		D7F06EDF1F592E8A00B8C6AA /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		D7F06EE11F592E8A00B8C6AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D7F06EE41F592E8A00B8C6AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7F06EE61F592E8A00B8C6AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +51,10 @@
 		D7F06EFB1F592E8B00B8C6AA /* FloorMapperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FloorMapperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F06EFF1F592E8B00B8C6AA /* FloorMapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorMapperUITests.swift; sourceTree = "<group>"; };
 		D7F06F011F592E8B00B8C6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7F06F0D1F59356200B8C6AA /* ARSCNView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARSCNView+Convenience.swift"; sourceTree = "<group>"; };
+		D7F06F0F1F5935DB00B8C6AA /* SCNScene+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNScene+Convenience.swift"; sourceTree = "<group>"; };
+		D7F06F111F59362800B8C6AA /* CGRect+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Convenience.swift"; sourceTree = "<group>"; };
+		D7F06F131F59469F00B8C6AA /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,13 +106,15 @@
 			isa = PBXGroup;
 			children = (
 				D7F06EDB1F592E8A00B8C6AA /* AppDelegate.swift */,
-				D7F06EDD1F592E8A00B8C6AA /* Scene.sks */,
-				D7F06EDF1F592E8A00B8C6AA /* Scene.swift */,
-				D7F06EE11F592E8A00B8C6AA /* ViewController.swift */,
-				D7F06EE31F592E8A00B8C6AA /* Main.storyboard */,
+				D7F06F0D1F59356200B8C6AA /* ARSCNView+Convenience.swift */,
 				D7F06EE61F592E8A00B8C6AA /* Assets.xcassets */,
-				D7F06EE81F592E8A00B8C6AA /* LaunchScreen.storyboard */,
+				D7F06F111F59362800B8C6AA /* CGRect+Convenience.swift */,
 				D7F06EEB1F592E8A00B8C6AA /* Info.plist */,
+				D7F06EE81F592E8A00B8C6AA /* LaunchScreen.storyboard */,
+				D7F06EE31F592E8A00B8C6AA /* Main.storyboard */,
+				D7F06F131F59469F00B8C6AA /* Plane.swift */,
+				D7F06F0F1F5935DB00B8C6AA /* SCNScene+Convenience.swift */,
+				D7F06EE11F592E8A00B8C6AA /* ViewController.swift */,
 			);
 			path = FloorMapper;
 			sourceTree = "<group>";
@@ -238,7 +244,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7F06EDE1F592E8A00B8C6AA /* Scene.sks in Resources */,
 				D7F06EEA1F592E8A00B8C6AA /* LaunchScreen.storyboard in Resources */,
 				D7F06EE71F592E8A00B8C6AA /* Assets.xcassets in Resources */,
 				D7F06EE51F592E8A00B8C6AA /* Main.storyboard in Resources */,
@@ -266,9 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F06F0E1F59356200B8C6AA /* ARSCNView+Convenience.swift in Sources */,
+				D7F06F121F59362800B8C6AA /* CGRect+Convenience.swift in Sources */,
 				D7F06EE21F592E8A00B8C6AA /* ViewController.swift in Sources */,
-				D7F06EE01F592E8A00B8C6AA /* Scene.swift in Sources */,
 				D7F06EDC1F592E8A00B8C6AA /* AppDelegate.swift in Sources */,
+				D7F06F141F59469F00B8C6AA /* Plane.swift in Sources */,
+				D7F06F101F5935DB00B8C6AA /* SCNScene+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
