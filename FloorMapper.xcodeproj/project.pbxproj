@@ -17,7 +17,7 @@
 		D7F06F0E1F59356200B8C6AA /* ARSCNView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F0D1F59356200B8C6AA /* ARSCNView+Convenience.swift */; };
 		D7F06F101F5935DB00B8C6AA /* SCNScene+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F0F1F5935DB00B8C6AA /* SCNScene+Convenience.swift */; };
 		D7F06F121F59362800B8C6AA /* CGRect+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F111F59362800B8C6AA /* CGRect+Convenience.swift */; };
-		D7F06F141F59469F00B8C6AA /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F131F59469F00B8C6AA /* Plane.swift */; };
+		D7F06F141F59469F00B8C6AA /* FloorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F06F131F59469F00B8C6AA /* FloorMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		D7F06F0D1F59356200B8C6AA /* ARSCNView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARSCNView+Convenience.swift"; sourceTree = "<group>"; };
 		D7F06F0F1F5935DB00B8C6AA /* SCNScene+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNScene+Convenience.swift"; sourceTree = "<group>"; };
 		D7F06F111F59362800B8C6AA /* CGRect+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Convenience.swift"; sourceTree = "<group>"; };
-		D7F06F131F59469F00B8C6AA /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		D7F06F131F59469F00B8C6AA /* FloorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,10 +109,10 @@
 				D7F06F0D1F59356200B8C6AA /* ARSCNView+Convenience.swift */,
 				D7F06EE61F592E8A00B8C6AA /* Assets.xcassets */,
 				D7F06F111F59362800B8C6AA /* CGRect+Convenience.swift */,
+				D7F06F131F59469F00B8C6AA /* FloorMap.swift */,
 				D7F06EEB1F592E8A00B8C6AA /* Info.plist */,
 				D7F06EE81F592E8A00B8C6AA /* LaunchScreen.storyboard */,
 				D7F06EE31F592E8A00B8C6AA /* Main.storyboard */,
-				D7F06F131F59469F00B8C6AA /* Plane.swift */,
 				D7F06F0F1F5935DB00B8C6AA /* SCNScene+Convenience.swift */,
 				D7F06EE11F592E8A00B8C6AA /* ViewController.swift */,
 			);
@@ -275,7 +275,7 @@
 				D7F06F121F59362800B8C6AA /* CGRect+Convenience.swift in Sources */,
 				D7F06EE21F592E8A00B8C6AA /* ViewController.swift in Sources */,
 				D7F06EDC1F592E8A00B8C6AA /* AppDelegate.swift in Sources */,
-				D7F06F141F59469F00B8C6AA /* Plane.swift in Sources */,
+				D7F06F141F59469F00B8C6AA /* FloorMap.swift in Sources */,
 				D7F06F101F5935DB00B8C6AA /* SCNScene+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

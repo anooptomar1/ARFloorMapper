@@ -35,10 +35,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // Create instance variable for more readable access inside class
     let serialSceneKitQueue: DispatchQueue = ViewController.serialSceneKitQueue
     
+    // MARK: - Floor Map
+    
+    var floorMap : FloorMap!
+    
     // MARK: - View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        floorMap = FloorMap()
         setupScene()
     }
     
@@ -78,6 +83,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.enableEnvironmentMapWithIntensity(25, queue: serialSceneKitQueue)
         
 //        sceneView.debugOptions = [.showWireframe]
+        
+        sceneView.scene.rootNode.addChildNode(floorMap)
 
         DispatchQueue.main.async {
             self.screenCenter = self.sceneView.bounds.mid
@@ -115,41 +122,42 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        if let planeAnchor = anchor as? ARPlaneAnchor {
-            serialSceneKitQueue.async {
-                self.updatePlane(anchor: planeAnchor)
-            }
-        }
-    }
-    
-    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-        if let planeAnchor = anchor as? ARPlaneAnchor {
-            serialSceneKitQueue.async {
-                self.removePlane(anchor: planeAnchor)
-            }
-        }
-    }
+//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+//        if let planeAnchor = anchor as? ARPlaneAnchor {
+//            serialSceneKitQueue.async {
+//                self.updatePlane(anchor: planeAnchor)
+//            }
+//        }
+//    }
+//
+//    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+//        if let planeAnchor = anchor as? ARPlaneAnchor {
+//            serialSceneKitQueue.async {
+//                self.removePlane(anchor: planeAnchor)
+//            }
+//        }
+//    }
     
     // MARK: - Planes
     
-    var planes = [ARPlaneAnchor: Plane]()
+//    var planes = [ARPlaneAnchor: Plane]()
     
     func addPlane(node: SCNNode,  anchor: ARPlaneAnchor) {
-        let plane = Plane(anchor)
-        planes[anchor] = plane        
-        node.addChildNode(plane)
+//        let plane = Plane(anchor)
+//        planes[anchor] = plane
+//        node.addChildNode(plane)
+        floorMap.add(anchor)
     }
     
-    func updatePlane(anchor: ARPlaneAnchor) {
-        if let plane = planes[anchor] {
-            plane.update(anchor)
-        }
-    }
-    
-    func removePlane(anchor: ARPlaneAnchor) {
-        if let plane = planes.removeValue(forKey: anchor) {
-            plane.removeFromParentNode()
-        }
-    }
+//    func updatePlane(anchor: ARPlaneAnchor) {
+//        if let plane = planes[anchor] {
+//            plane.update(anchor)
+//        }
+//    }
+//
+//    func removePlane(anchor: ARPlaneAnchor) {
+//        if let plane = planes.removeValue(forKey: anchor) {
+//            plane.removeFromParentNode()
+//        }
+//    }
 }
