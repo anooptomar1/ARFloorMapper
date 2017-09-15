@@ -1,3 +1,9 @@
+//
+//  FloorMap.swift
+//  FloorMapper
+//
+//  Created by floesch on 01.09.17.
+
 import Foundation
 import ARKit
 
@@ -20,10 +26,19 @@ class FloorMap: SCNNode {
     // MARK: - ARKit
     
     func add(_ anchor: ARPlaneAnchor) {
-        if vertices.isEmpty {
-            setFirstPlane(anchor)
-            vertices.removeAll()
-        }
+//        if vertices.isEmpty {
+//            setFirstPlane(anchor)
+//            vertices.removeAll()
+//        }
+
+        // simply add one SCNPlane per ARPlaneAnchor
+        let geometry = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
+        let red = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        let green = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        let blue = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        geometry.materials.first?.diffuse.contents = UIColor(red: red, green: green, blue: blue, alpha: 0.6)
+        let node = SCNNode(geometry: geometry)
+        addChildNode(node)
         
 //        if let plane = childNodes.first {
 //            let geometry = plane.geometry as! SCNPlane
@@ -59,5 +74,9 @@ class FloorMap: SCNNode {
         let green = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
         let blue = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
         geometry?.materials.first?.diffuse.contents = UIColor(red: red, green: green, blue: blue, alpha: 0.6)
+    }
+    
+    private func intersect(plane: ARPlaneAnchor) {
+        
     }
 }

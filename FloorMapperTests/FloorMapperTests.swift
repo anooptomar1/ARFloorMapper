@@ -2,9 +2,7 @@
 //  FloorMapperTests.swift
 //  FloorMapperTests
 //
-//  Created by Florian Schoeler on 01.09.17.
-//  Copyright © 2017 Florian Schöler. All rights reserved.
-//
+//  Created by floesch on 01.09.17.
 
 import XCTest
 @testable import FloorMapper

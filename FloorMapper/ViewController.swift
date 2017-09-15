@@ -2,9 +2,7 @@
 //  ViewController.swift
 //  FloorMapper
 //
-//  Created by Florian Schoeler on 01.09.17.
-//  Copyright © 2017 Florian Schöler. All rights reserved.
-//
+//  Created by floesch on 01.09.17.
 
 import UIKit
 import ARKit
@@ -31,7 +29,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     // MARK: - Queues
     
-    static let serialSceneKitQueue = DispatchQueue(label: "de.florianschoeler.serialSceneKitQueue")
+    static let serialSceneKitQueue = DispatchQueue(label: "serialSceneKitQueue")
     // Create instance variable for more readable access inside class
     let serialSceneKitQueue: DispatchQueue = ViewController.serialSceneKitQueue
     
